@@ -1,0 +1,5 @@
+export {ZIconButton} from './ZIconButton/ZIconButton';
+export {
+  IconButtonVariantsEnum,
+  IconNamesEnum,
+} from './ZIconButton/ZIconButton.types';
