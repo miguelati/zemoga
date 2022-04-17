@@ -3,7 +3,3 @@ export enum IconButtonVariantsEnum {
   solid = 'solid',
   ghost = 'ghost',
 }
-
-export enum IconNamesEnum {
-  refresh = 'refresh',
-}

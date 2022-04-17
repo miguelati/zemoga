@@ -1,10 +1,7 @@
 import React, {FC} from 'react';
-import {SizesEnum} from '~ts/enums';
+import {SizesEnum, IconNamesEnum} from '~ts/enums';
 import {ZIconButton} from '../ZIconButton/ZIconButton';
-import {
-  IconNamesEnum,
-  IconButtonVariantsEnum,
-} from '../ZIconButton/ZIconButton.types';
+import {IconButtonVariantsEnum} from '../ZIconButton/ZIconButton.types';
 
 export interface ZNavButtonProps {
   icon: IconNamesEnum;

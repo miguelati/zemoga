@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {IconButton} from 'native-base';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SizesEnum} from '~ts/enums';
-import {IconButtonVariantsEnum, IconNamesEnum} from './ZIconButton.types';
+import {SizesEnum, IconNamesEnum} from '~ts/enums';
+import {IconButtonVariantsEnum} from './ZIconButton.types';
+import {ZIcon} from '../ZIcon/ZIcon';
 
 export interface ZIconButtonProps {
   size: SizesEnum;
@@ -16,7 +16,7 @@ const ZIconButton: FC<ZIconButtonProps> = ({size, variant, icon, onPress}) => {
     <IconButton
       size={size}
       variant={variant}
-      icon={<Icon name={icon} size={24} color="#FFF" />}
+      icon={<ZIcon icon={icon} />}
       onPress={onPress}
     />
   );

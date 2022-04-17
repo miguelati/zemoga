@@ -5,3 +5,7 @@ export enum SizesEnum {
   lg = 'lg',
   xl = 'xl',
 }
+
+export enum SizesNumberEnum {
+  sm = 24,
+}
