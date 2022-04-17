@@ -3,3 +3,4 @@ export {
   IconButtonVariantsEnum,
   IconNamesEnum,
 } from './ZIconButton/ZIconButton.types';
+export {ZSegmented} from './ZSegmented/ZSegmented';
