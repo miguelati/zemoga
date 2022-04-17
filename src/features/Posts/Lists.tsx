@@ -1,31 +1,26 @@
 import React, {useEffect} from 'react';
 import {Text, VStack} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import {
-  ZIconButton,
-  IconButtonVariantsEnum,
-  IconNamesEnum,
-  ZSegmented,
-} from '~components';
-import {SizesEnum} from '~ts/enums';
+import {ZNavButton, IconNamesEnum, ZSegmented} from '~components';
 
 const Lists = () => {
   const {setOptions} = useNavigation();
-  useEffect(() => {
-    setOptions({
-      headerRight: () => (
-        <ZIconButton
-          size={SizesEnum.sm}
-          variant={IconButtonVariantsEnum.ghost}
-          icon={IconNamesEnum.refresh}
-        />
-      ),
-    });
-  }, [setOptions]);
 
   const onTabChange = (index: number) => {
     console.log('onTabChange', index);
   };
+
+  const onRefreshPress = () => {
+    console.log('onRefreshPress');
+  };
+
+  useEffect(() => {
+    setOptions({
+      headerRight: () => (
+        <ZNavButton icon={IconNamesEnum.refresh} onPress={onRefreshPress} />
+      ),
+    });
+  }, [setOptions]);
 
   return (
     <VStack flex={1}>

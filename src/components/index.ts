@@ -4,3 +4,4 @@ export {
   IconNamesEnum,
 } from './ZIconButton/ZIconButton.types';
 export {ZSegmented} from './ZSegmented/ZSegmented';
+export {ZNavButton} from './ZNavButton/ZNavButton';

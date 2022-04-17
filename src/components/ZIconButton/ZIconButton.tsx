@@ -8,15 +8,16 @@ export interface ZIconButtonProps {
   size: SizesEnum;
   variant: IconButtonVariantsEnum;
   icon: IconNamesEnum;
+  onPress: () => void;
 }
 
-const ZIconButton: FC<ZIconButtonProps> = ({size, variant, icon}) => {
+const ZIconButton: FC<ZIconButtonProps> = ({size, variant, icon, onPress}) => {
   return (
     <IconButton
       size={size}
       variant={variant}
       icon={<Icon name={icon} size={24} color="#FFF" />}
-      // _icon={{as: MaterialCommunityIcons, name: icon}}
+      onPress={onPress}
     />
   );
 };
