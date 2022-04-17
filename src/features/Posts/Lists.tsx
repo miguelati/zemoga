@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {Text, VStack, Box} from 'native-base';
+import {VStack, Box} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import {ZNavButton, ZSegmented} from '~components';
+import {ZNavButton, ZSegmented, ZRemoveButton} from '~components';
 import i18n from '~i18n';
 import {IconNamesEnum} from '~ts/enums';
 import {ZPostList} from './components/ZPostsList/ZPostList';
@@ -15,6 +15,14 @@ const Lists = () => {
 
   const onRefreshPress = () => {
     console.log('onRefreshPress');
+  };
+
+  const onDeleteAllPress = () => {
+    console.log('onDeleteAllPress');
+  };
+
+  const onPostListItemPress = (id: number) => {
+    console.log('onPostListItemPress', id);
   };
 
   useEffect(() => {
@@ -36,6 +44,7 @@ const Lists = () => {
           onChange={onTabChange}
         />
         <ZPostList
+          onPress={onPostListItemPress}
           data={[
             {
               userId: 1,
@@ -52,9 +61,10 @@ const Lists = () => {
             },
           ]}
         />
-        <Text fontSize="xl" bold>
-          Lists
-        </Text>
+        <ZRemoveButton
+          text={i18n.t('POSTS.LISTS.BUTTONS.DELETE_ALL')}
+          onPress={onDeleteAllPress}
+        />
       </VStack>
     </Box>
   );

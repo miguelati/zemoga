@@ -6,6 +6,9 @@ export default {
         ALL: 'All',
         FAVORITES: 'Favorites',
       },
+      BUTTONS: {
+        DELETE_ALL: 'Delete all',
+      },
     },
     DETAILS: {TITLE: 'Details'},
   },
