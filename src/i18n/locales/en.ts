@@ -10,6 +10,19 @@ export default {
         DELETE_ALL: 'Delete all',
       },
     },
-    DETAILS: {TITLE: 'Details'},
+    DETAILS: {
+      TITLE: 'Details',
+      TITLE_DESCRIPTION: 'Description',
+      USER_DATA: {
+        TITLE: 'User',
+        LABELS: {
+          NAME: 'Name:',
+          EMAIL: 'Email:',
+          PHONE: 'Phone:',
+          WEBSITE: 'Website:',
+        },
+      },
+      TITLE_COMMENTS: 'Comments',
+    },
   },
 };
