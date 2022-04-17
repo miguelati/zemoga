@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react';
 import {VStack, Box} from 'native-base';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 import {ZNavButton, ZSegmented, ZRemoveButton} from '~components';
 import i18n from '~i18n';
 import {IconNamesEnum} from '~ts/enums';
 import {ZPostList} from './components/ZPostsList/ZPostList';
+import {PostsStackParamList} from './navigation.type';
 
 const Lists = () => {
-  const {setOptions} = useNavigation();
+  const {setOptions, navigate} =
+    useNavigation<StackNavigationProp<PostsStackParamList>>();
 
   const onTabChange = (index: number) => {
     console.log('onTabChange', index);
@@ -23,6 +26,7 @@ const Lists = () => {
 
   const onPostListItemPress = (id: number) => {
     console.log('onPostListItemPress', id);
+    navigate('Details', {id});
   };
 
   useEffect(() => {

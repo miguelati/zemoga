@@ -3,13 +3,9 @@ import {useTheme} from 'native-base';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Lists} from '~features/Posts/Lists';
 import {Details} from '~features/Posts/Details';
-import {getHeaderStyle} from './utils';
 import i18n from '~i18n';
-
-type PostsStackParamList = {
-  Lists: undefined;
-  Details: undefined;
-};
+import {PostsStackParamList} from './navigation.type';
+import {getHeaderStyle} from './utils';
 
 const Stack = createStackNavigator<PostsStackParamList>();
 
@@ -29,7 +25,11 @@ const PostsStack = () => {
         component={Lists}
       />
       <Stack.Screen
-        options={{headerTitle: i18n.t('POSTS.DETAILS.TITLE')}}
+        options={{
+          headerTitle: '',
+          headerBackTitle: ' ',
+          headerTintColor: colors.white,
+        }}
         name="Details"
         component={Details}
       />

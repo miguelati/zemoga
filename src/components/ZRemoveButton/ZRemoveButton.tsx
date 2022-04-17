@@ -11,7 +11,7 @@ export interface ZIconButtonProps {
 
 const ZRemoveButton: FC<ZIconButtonProps> = ({text, onPress}) => {
   const isAndroid = Platform.OS === 'android';
-  return !isAndroid ? (
+  return isAndroid ? (
     <Fab
       renderInPortal={false}
       shadow={2}
