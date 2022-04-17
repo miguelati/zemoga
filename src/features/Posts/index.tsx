@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Lists} from '~features/Posts/Lists';
 import {Details} from '~features/Posts/Details';
 import {getHeaderStyle} from './utils';
+import i18n from '~i18n';
 
 type PostsStackParamList = {
   Lists: undefined;
@@ -23,12 +24,12 @@ const PostsStack = () => {
         }),
       }}>
       <Stack.Screen
-        options={{headerTitle: 'Posts'}}
+        options={{headerTitle: i18n.t('POSTS.LISTS.TITLE')}}
         name="Lists"
         component={Lists}
       />
       <Stack.Screen
-        options={{headerTitle: 'Details'}}
+        options={{headerTitle: i18n.t('POSTS.DETAILS.TITLE')}}
         name="Details"
         component={Details}
       />

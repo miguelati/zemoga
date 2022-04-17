@@ -1,3 +1,1 @@
-import en from './en';
-
-export {en};
+export {default as en} from './en';

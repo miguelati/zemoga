@@ -1,5 +1,12 @@
 export default {
   POSTS: {
-    TITLE: 'Posts',
+    LISTS: {
+      TITLE: 'Posts',
+      OPTIONS: {
+        ALL: 'All',
+        FAVORITES: 'Favorites',
+      },
+    },
+    DETAILS: {TITLE: 'Details'},
   },
 };
