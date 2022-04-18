@@ -3,4 +3,6 @@ export enum IconNamesEnum {
   circle = 'circle',
   chevronRight = 'chevron-right',
   trashCan = 'trash-can',
+  star = 'star',
+  starOutline = 'star-outline',
 }

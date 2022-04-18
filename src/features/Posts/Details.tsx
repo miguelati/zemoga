@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, VStack} from 'native-base';
+import {useNavigation} from '@react-navigation/native';
 import {ZDescription} from './components/ZDescription/ZDescription';
 import {ZUserData} from './components/ZUserData/ZUserData';
 import {ZCommentList} from './components/ZCommentList/ZCommentList';
+import {ZFavButton} from './components/ZFavButton/ZFavButton';
 import {User, Comment} from '~ts/interfaces';
 
 const Details = () => {
@@ -29,6 +31,19 @@ const Details = () => {
       body: 'et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut',
     },
   ];
+  const [isFav, setIsFav] = useState(false);
+  const {setOptions} = useNavigation();
+
+  const onFavPress = (selected: boolean) => {
+    setIsFav(selected);
+    console.log('onFavPress', selected);
+  };
+
+  useEffect(() => {
+    setOptions({
+      headerRight: () => <ZFavButton selected={isFav} onPress={onFavPress} />,
+    });
+  }, [setOptions, isFav]);
   return (
     <Box flex={1} safeAreaBottom>
       <VStack space={2}>
