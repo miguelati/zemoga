@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Box, VStack} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import {ZDescription} from './components/ZDescription/ZDescription';
-import {ZUserData} from './components/ZUserData/ZUserData';
-import {ZCommentList} from './components/ZCommentList/ZCommentList';
-import {ZFavButton} from './components/ZFavButton/ZFavButton';
+import {ZDescription, ZUserData, ZCommentList, ZFavButton} from './components';
 import {User, Comment} from '~ts/interfaces';
 
 const Details = () => {

@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ZNavButton, ZSegmented, ZRemoveButton} from '~components';
 import i18n from '~i18n';
 import {IconNamesEnum} from '~ts/enums';
-import {ZPostList} from './components/ZPostsList/ZPostList';
+import {ZPostList} from './components';
 import {PostsStackParamList} from './navigation.type';
 
 const Lists = () => {
