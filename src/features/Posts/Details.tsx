@@ -31,11 +31,11 @@ const Details = () => {
   }, [setOptions, isFav]);
   return (
     <Box flex={1} safeAreaBottom>
-      <VStack space={2}>
-        <ZQueryLoading request={postRequest}>
+      <VStack space={2} flex={1}>
+        <ZQueryLoading flex={1} request={postRequest}>
           <ZDescription content={postRequest.data?.body} />
         </ZQueryLoading>
-        <ZQueryLoading request={userRequest}>
+        <ZQueryLoading flex={1} request={userRequest}>
           <ZUserData user={userRequest.data} />
         </ZQueryLoading>
       </VStack>

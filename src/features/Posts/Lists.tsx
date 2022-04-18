@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {VStack, Box} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
@@ -24,18 +24,16 @@ const Lists = () => {
 
   const postsRequest = usePosts();
 
-  const onRefreshPress = () => {
-    console.log('onRefreshPress');
-  };
+  const onRefreshPress = useCallback(() => {
+    postsRequest.refetch();
+  }, [postsRequest]);
 
   const onDeleteAllPress = () => {
     console.log('onDeleteAllPress');
   };
 
-  const onPostListItemPress = (id: string, userId: string) => {
-    console.log('onPostListItemPress', id);
+  const onPostListItemPress = (id: string, userId: string) =>
     navigate('Details', {id, userId});
-  };
 
   useEffect(() => {
     setOptions({
@@ -43,7 +41,7 @@ const Lists = () => {
         <ZNavButton icon={IconNamesEnum.refresh} onPress={onRefreshPress} />
       ),
     });
-  }, [setOptions]);
+  }, [setOptions, onRefreshPress]);
 
   return (
     <Box flex={1} safeAreaBottom>
@@ -55,7 +53,7 @@ const Lists = () => {
           ]}
           onChange={onTabChange}
         />
-        <ZQueryLoading request={postsRequest}>
+        <ZQueryLoading flex={1} big request={postsRequest}>
           <ZPostList
             onPress={onPostListItemPress}
             data={postsRequest.data || []}
