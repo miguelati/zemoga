@@ -3,21 +3,21 @@ import {PostStateEnum} from '~ts/enums';
 
 export const checkState = async (state: PostStateEnum, id: string) => {
   const res = await AsyncStorage.getItem(`@${state}`);
-  const favorites = JSON.parse(res || '[]');
-  return favorites.includes(id);
+  const stateSaved = JSON.parse(res || '[]');
+  return stateSaved.includes(id);
 };
 
 export const saveState = async (state: PostStateEnum, id: string) => {
   const res = await AsyncStorage.getItem(`@${state}`);
-  const favorites = JSON.parse(res || '[]');
-  await AsyncStorage.setItem(`@${state}`, JSON.stringify([...favorites, id]));
+  const stateSaved = JSON.parse(res || '[]');
+  await AsyncStorage.setItem(`@${state}`, JSON.stringify([...stateSaved, id]));
 };
 
 export const removeState = async (state: PostStateEnum, id: string) => {
   const res = await AsyncStorage.getItem(`@${state}`);
-  const favorites = JSON.parse(res || '[]');
+  const stateSaved = JSON.parse(res || '[]');
   await AsyncStorage.setItem(
     `@${state}`,
-    JSON.stringify([...favorites.filter((e: string) => e !== id)]),
+    JSON.stringify([...stateSaved.filter((e: string) => e !== id)]),
   );
 };
