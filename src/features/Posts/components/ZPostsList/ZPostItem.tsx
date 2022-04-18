@@ -1,30 +1,21 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import {HStack, View, Text, useTheme, Pressable} from 'native-base';
 import {Post} from '~ts/interfaces';
-import {IconNamesEnum, PostStateEnum} from '~ts/enums';
+import {IconNamesEnum} from '~ts/enums';
 import {ZIcon} from '~components';
-import {storage} from '~utils';
 
 export interface ZIconButtonProps {
   data: Post;
+  isFav: boolean;
+  isRead: boolean;
   onPress: (id: string, userId: string) => void;
 }
 
-const ZPostItem: FC<ZIconButtonProps> = ({data, onPress}) => {
+const ZPostItem: FC<ZIconButtonProps> = ({data, isFav, isRead, onPress}) => {
   const {colors} = useTheme();
-  const [isFav, setIsFav] = useState(false);
-  const [isRead, setIsRead] = useState(false);
   const onPostItemPress = () => {
     onPress(data.id, data.userId);
   };
-
-  useEffect(() => {
-    const cb = async () => {
-      setIsFav(await storage.checkState(PostStateEnum.favorite, data.id));
-      setIsRead(await storage.checkState(PostStateEnum.read, data.id));
-    };
-    cb();
-  }, [setIsFav, setIsRead, data.id]);
 
   return (
     <Pressable onPress={onPostItemPress}>

@@ -12,6 +12,14 @@ export interface ZPostListProps {
 
 const ZCommentList: FC<ZPostListProps> = ({data}) => {
   const isAndroid = Platform.OS === 'android';
+  const keyExtractor = (item: Partial<Comment>, index: number) =>
+    `${item.id}-${index}`;
+  const RenderItem = ({item}: ListRenderItemInfo<Partial<Comment>>) => (
+    <ZCommentItem data={item} />
+  );
+  const Separator = () => (
+    <View h="1px" marginLeft={isAndroid ? 0 : 4} bg="gray.200" />
+  );
   return (
     <VStack flex={1}>
       <View h={10} bg="gray.300" px={4} justifyContent="center">
@@ -19,14 +27,11 @@ const ZCommentList: FC<ZPostListProps> = ({data}) => {
       </View>
       <FlatList<Partial<Comment>>
         flex={1}
-        keyExtractor={(item, index) => `${item.id}-${index}`}
+        removeClippedSubviews
+        keyExtractor={keyExtractor}
         data={data}
-        renderItem={({item}: ListRenderItemInfo<Partial<Comment>>) => (
-          <ZCommentItem data={item} />
-        )}
-        ItemSeparatorComponent={() => (
-          <View h="1px" marginLeft={isAndroid ? 0 : 4} bg="gray.200" />
-        )}
+        renderItem={RenderItem}
+        ItemSeparatorComponent={Separator}
       />
     </VStack>
   );
