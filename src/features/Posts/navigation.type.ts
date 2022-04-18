@@ -1,4 +1,4 @@
 export type PostsStackParamList = {
   Lists: undefined;
-  Details: {id: number};
+  Details: {id: string; userId: string};
 };

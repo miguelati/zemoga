@@ -1,35 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {Box, VStack} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
+import {usePost} from '~api/posts/queries';
+import {useUser} from '~api/users/queries';
+import {useComments} from '~api/comments/queries';
 import {ZDescription, ZUserData, ZCommentList, ZFavButton} from './components';
-import {User, Comment} from '~ts/interfaces';
+import {ZQueryLoading} from '~components';
+import {PostsStackParamList} from './navigation.type';
+type ScreenRouteProp = RouteProp<PostsStackParamList, 'Details'>;
 
 const Details = () => {
-  const user: Partial<User> = {
-    id: 1,
-    name: 'John',
-    email: 'john@gmail.com',
-    phone: '123-456-3322',
-    website: 'www.john.com',
-  };
-  const description =
-    'et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut';
-  const comments: Partial<Comment>[] = [
-    {
-      id: 1,
-      body: 'et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut',
-    },
-    {
-      id: 2,
-      body: 'et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut',
-    },
-    {
-      id: 3,
-      body: 'et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut',
-    },
-  ];
   const [isFav, setIsFav] = useState(false);
   const {setOptions} = useNavigation();
+  const {
+    params: {id, userId},
+  } = useRoute<ScreenRouteProp>();
+  const postRequest = usePost(id);
+  const userRequest = useUser(userId);
+  const commentsRequest = useComments(id);
 
   const onFavPress = (selected: boolean) => {
     setIsFav(selected);
@@ -44,10 +32,16 @@ const Details = () => {
   return (
     <Box flex={1} safeAreaBottom>
       <VStack space={2}>
-        <ZDescription content={description} />
-        <ZUserData user={user} />
+        <ZQueryLoading request={postRequest}>
+          <ZDescription content={postRequest.data?.body} />
+        </ZQueryLoading>
+        <ZQueryLoading request={userRequest}>
+          <ZUserData user={userRequest.data} />
+        </ZQueryLoading>
       </VStack>
-      <ZCommentList data={comments} />
+      <ZQueryLoading request={commentsRequest}>
+        <ZCommentList data={commentsRequest.data} />
+      </ZQueryLoading>
     </Box>
   );
 };

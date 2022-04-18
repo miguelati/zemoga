@@ -7,7 +7,7 @@ import {ZPostItem} from './ZPostItem';
 
 export interface ZPostListProps {
   data: Post[];
-  onPress: (id: number) => void;
+  onPress: (id: string, userId: string) => void;
 }
 
 const ZPostList: FC<ZPostListProps> = ({data, onPress}) => {

@@ -6,13 +6,13 @@ import {ZIcon} from '~components';
 
 export interface ZIconButtonProps {
   data: Post;
-  onPress: (id: number) => void;
+  onPress: (id: string, userId: string) => void;
 }
 
 const ZPostItem: FC<ZIconButtonProps> = ({data, onPress}) => {
   const {colors} = useTheme();
   const onPostItemPress = () => {
-    onPress(data.id);
+    onPress(data.id, data.userId);
   };
 
   return (
