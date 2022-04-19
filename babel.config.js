@@ -4,6 +4,12 @@ module.exports = api => {
     presets: ['module:metro-react-native-babel-preset'],
     plugins: [
       [
+        'import-rename',
+        {
+          '^react-native-config$': 'react-native-config-node',
+        },
+      ],
+      [
         'module-resolver',
         {
           root: ['./'],
