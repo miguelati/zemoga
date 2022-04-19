@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+import {Platform} from 'react-native';
 import {HStack, View, Text, useTheme, Pressable} from 'native-base';
 import {Post} from '~ts/interfaces';
 import {IconNamesEnum} from '~ts/enums';
@@ -12,6 +13,7 @@ export interface ZIconButtonProps {
 }
 
 const ZPostItem: FC<ZIconButtonProps> = ({data, isFav, isRead, onPress}) => {
+  const isAndroid = Platform.OS === 'android';
   const {colors} = useTheme();
   const onPostItemPress = () => {
     onPress(data.id, data.userId);
@@ -24,7 +26,7 @@ const ZPostItem: FC<ZIconButtonProps> = ({data, isFav, isRead, onPress}) => {
           {!isRead && (
             <ZIcon icon={IconNamesEnum.circle} iconColor={colors.blue[300]} />
           )}
-          {isFav && (
+          {isFav && !isAndroid && (
             <ZIcon icon={IconNamesEnum.star} iconColor={colors.yellow[500]} />
           )}
         </View>
@@ -32,10 +34,14 @@ const ZPostItem: FC<ZIconButtonProps> = ({data, isFav, isRead, onPress}) => {
           <Text>{data.title}</Text>
         </View>
         <View flex={1} alignItems="center" justifyContent="center">
-          <ZIcon
-            icon={IconNamesEnum.chevronRight}
-            iconColor={colors.gray[400]}
-          />
+          {isAndroid ? (
+            <ZIcon icon={IconNamesEnum.star} iconColor={colors.yellow[500]} />
+          ) : (
+            <ZIcon
+              icon={IconNamesEnum.chevronRight}
+              iconColor={colors.gray[400]}
+            />
+          )}
         </View>
       </HStack>
     </Pressable>
