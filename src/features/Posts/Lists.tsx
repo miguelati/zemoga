@@ -1,5 +1,5 @@
 import React, {useEffect, useCallback, useState} from 'react';
-import {VStack, Box} from 'native-base';
+import {VStack, Box, View, Text} from 'native-base';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -59,6 +59,14 @@ const Lists = () => {
     });
   }, [setOptions, onRefreshPress]);
 
+  const ErrorView = () => (
+    <View flex={1} alignItems="center" justifyContent="center">
+      <Text bold fontSize={20}>
+        Error with data!
+      </Text>
+    </View>
+  );
+
   return (
     <Box flex={1} safeAreaBottom>
       <VStack flex={1}>
@@ -69,13 +77,19 @@ const Lists = () => {
           ]}
           onChange={onTabChange}
         />
-        <ZQueryLoading flex={1} big request={postsRequest}>
-          <ZPostList onPress={onPostListItemPress} data={data || []} />
-        </ZQueryLoading>
-        <ZRemoveButton
-          text={i18n.t('POSTS.LISTS.BUTTONS.DELETE_ALL')}
-          onPress={onDeleteAllPress}
-        />
+        {postsRequest.error ? (
+          <ErrorView />
+        ) : (
+          <View flex={1}>
+            <ZQueryLoading flex={1} big request={postsRequest}>
+              <ZPostList onPress={onPostListItemPress} data={data || []} />
+            </ZQueryLoading>
+            <ZRemoveButton
+              text={i18n.t('POSTS.LISTS.BUTTONS.DELETE_ALL')}
+              onPress={onDeleteAllPress}
+            />
+          </View>
+        )}
       </VStack>
     </Box>
   );
