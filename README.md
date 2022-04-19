@@ -34,4 +34,5 @@ features
 # cd zemoga
 # yarn
 # npx react-native run-ios // for Android npx react-native run-android
+# yarn test // for run all tests
 ```
